@@ -55,7 +55,7 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	private void getInformationJpqlFromUser() {
-		LOGGER.info(
+/* 		LOGGER.info(
 				"Usuario con el metodo findByUserEmail " +
 						userRepository.findByUserEmail("Pedro@domain.com")
 								.orElseThrow(() -> new RuntimeException("No se encontro el usuario")));
@@ -70,6 +70,18 @@ public class DemoApplication implements CommandLineRunner {
 		LOGGER.info("Usuario con query method" +
 				userRepository.findByEmailAndName("Daniela@domain.com", "Daniela")
 						.orElseThrow(() -> new RuntimeException("Usuario no encontrado")));
+
+		userRepository.findByNameLike("%da%")
+				.stream()
+				.forEach(user -> LOGGER.info("Usuario findByNameLike " + user));
+
+		userRepository.findByNameOrEmail(null, "john@domain.com")
+				.stream()
+				.forEach(user -> LOGGER.info("Usuario findByNameOrEmail " + user)); */
+		
+		userRepository.findByBirthDateBetween(LocalDate.of(2010, 3, 1), LocalDate.of(2021, 4, 2))
+		.stream()
+		.forEach(user -> LOGGER.info("Usuarios findByBirthDateBetween" + user));
 	}
 
 	private void saveUsersInDataBase() {
